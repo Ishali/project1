@@ -1,0 +1,176 @@
+{
+    "stack_name": "vertex-lambda-stack",
+  "aws_account": {
+    "sbx01": "",
+    "dev": "223865032204",
+    "test": "",
+    "prod": ""
+  },
+  "region": "us-east-1",
+  "lambda_fn": 
+    {
+      "stack_name": "vertex-lambda-tryout",
+      "function_name": "vertex-tryout-{environment}-lambda",
+      "description": "This lambda is built for vertex POC",
+      "vpc": {
+        "sbx01": "",
+        "dev": "vpc-041e7979",
+        "test": "",
+        "prod": ""
+      },
+      "vpc_subnets": {
+        "sbx01": [
+          "subnet-03939e0d",
+          "subnet-cfa937fe",
+          "subnet-c4df8ee5",
+          "subnet-0a1f556c"
+        ],
+        "dev": [
+            "subnet-03939e0d",
+            "subnet-cfa937fe",
+            "subnet-c4df8ee5",
+            "subnet-0a1f556c"
+        ],
+        "test" : [
+            "subnet-03939e0d",
+            "subnet-cfa937fe",
+            "subnet-c4df8ee5",
+            "subnet-0a1f556c"
+        ],
+        "prod": [
+            "subnet-03939e0d",
+            "subnet-cfa937fe",
+            "subnet-c4df8ee5",
+            "subnet-0a1f556c"
+          ]
+      },
+      "vpc_cidr_block": {
+        "sbx01": "",
+        "dev": "172.31.0.0/16",
+        "test" : "",
+        "prod": ""
+      },
+      "availability_zones":{
+        "sbx01": [
+          "us-east-1a",
+          "us-east-1b",
+          "us-east-1c",
+          "us-east-1d"
+        ],
+        "dev": [
+          "us-east-1a",
+          "us-east-1b",
+          "us-east-1c",
+          "us-east-1d"
+        ],
+        "test": [
+          "us-east-1a",
+          "us-east-1b",
+          "us-east-1c",
+          "us-east-1d"
+        ],
+        "prod":[
+          "us-east-1a",
+          "us-east-1b",
+          "us-east-1c",
+          "us-east-1d"
+        ]
+      },
+      "private_subnet_route_table_ids":{
+        "sbx01": [
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef"
+          
+        ],
+        "dev": [
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef"
+        ],
+        "test": [
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef"
+          
+        ],
+        "prod":[
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef",
+          "rtb-9e8964ef"
+        ]
+      },
+      "security_groups": {
+        "sbx01": "sg-a091e5bb",
+        "dev": "sg-a091e5bb",
+        "test": "sg-a091e5bb",
+        "prod": "sg-a091e5bb"
+      },
+      "lambda_permissions": [
+        
+        {
+          "effect": "Allow",
+          "actions": [
+            "logs:CreateLogGroup"
+          ],
+          "resources": [
+            "arn:aws:logs:*:*:*"
+          ]
+        },
+        {
+          "effect": "Allow",
+          "actions": [
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
+          ],
+          "resources": [
+            "arn:aws:logs:*:*:log-group:/aws/lambda/vertex-impact-{environment}-logger-notification:*"
+          ]
+        },
+        {
+          "effect": "Allow",
+          "actions": [
+            "ec2:CreateNetworkInterface",
+            "ec2:DeleteNetworkInterface",
+            "ec2:DescribeNetworkInterfaces",
+            "ec2:AssignPrivateIpAddresses",
+            "ec2:UnassignPrivateIpAddresses"
+          ],
+          "resources": [
+            "*"
+          ]
+        }
+      ],
+      "handler_dir_path": "src/",
+      "handler_fn": "test.lambda_handler",
+      "timeout_duration_sec": 300,
+      "retries": 1,
+      "environment_vars": {
+        "environment": "{environment}",
+        "module" : "omnichannel",
+        "source_name" : "vertex-impact-{environment}-lambda-function",
+        "source": "lambda"
+      },
+      "memory_size": 512,
+      "destination_on_success": {
+        "type": null,
+        "arn": null
+      },
+      "destination_on_failure": {
+        "type": null,
+        "arn": null
+      },
+      "lambda_layers": 
+        {
+          "name": "vertex-impact-{environment}-layer",
+          "path": "./lambda-layers/vertex-impact-{environment}-layer"
+        }
+      
+      
+    }
+  
+}
