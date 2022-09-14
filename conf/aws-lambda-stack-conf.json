@@ -9,8 +9,8 @@
   "region": "us-east-1",
   "lambda_fn": 
     {
-      "stack_name": "vertex-lambda-tryout",
-      "function_name": "vertex-tryout-{environment}-lambda",
+      "stack_name": "vertex-lambda-func",
+      "function_name": "vertex-func-{environment}-lambda",
       "description": "This lambda is built for vertex POC",
       "vpc": {
         "sbx01": "",

@@ -1,7 +1,4 @@
 requests
-pandas
-numpy
-google-api-python-client
 oauth2client
 regex
 boto3

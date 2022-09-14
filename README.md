@@ -45,7 +45,7 @@ To list the resources -
 ```bash
 cdk ls -c env=${environment_name} --all -v
 ``` 
-
+cdk synth -c env=${environment_name} --all -v
 
 Check which resource will cdk create, replace or destroy - 
 ```bash
