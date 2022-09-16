@@ -21,9 +21,10 @@ class LambdaStack(Stack):
         generic_layer = lambda_.LayerVersion(self, f"{config['lambda_fn']['stack_name']}-layer",
                                    layer_version_name=config['lambda_fn']['lambda_layers']['name'],
                                    code=lambda_.AssetCode(config['lambda_fn']['lambda_layers']['path']),
-                                   source_code_hash=config['lambda_fn']['lambda_layers']['data'].archive_file.reliability_lib.output_base64sha256,
                                    compatible_runtimes=[lambda_.Runtime.PYTHON_3_9],
                                    compatible_architectures=[lambda_.Architecture.X86_64])
+        ver = generic_layer.current_version
+        print("version of lambda layer" , ver)
         # Lambda-Role
         generic_lambda_role = aws_iam.Role(self, f"{config['lambda_fn']['stack_name']}-lambda-role",
                                    assumed_by=aws_iam.ServicePrincipal('lambda.amazonaws.com'),

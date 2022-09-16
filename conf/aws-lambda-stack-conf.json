@@ -169,7 +169,6 @@
         {
           "name": "vertex-impact-{environment}-layer",
           "path": "./lambda-layers/vertex-impact-{environment}-layer"
-          "data": "./lambda-layers/vertex-impact-{environment}-layer"
         }
       
       
