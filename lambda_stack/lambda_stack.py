@@ -12,19 +12,24 @@ from aws_cdk import (
     aws_iam
 )
 
+
+class Bundling:
+    pass
+
+
 class LambdaStack(Stack):
 
-    def __init__(self, app: App, id: str, config: dict, envname: string, **kwargs) -> None:
+    def __init__(self, app: App, id: str, config: dict, envname: string, assetHashType=None, bundling=None, **kwargs) -> None:
         super().__init__(app, id, **kwargs)
 
         ## Creating a lambda function for the Generic Logger Lambda Function
         generic_layer = lambda_.LayerVersion(self, f"{config['lambda_fn']['stack_name']}-layer",
                                              layer_version_name=config['lambda_fn']['lambda_layers']['name'],
                                              code=lambda_.AssetCode(config['lambda_fn']['lambda_layers']['path'],
-                                                                    bundling=aws_cdk.BundlingOptions(asset_hash_type=aws_cdk.AssetHashType.BUNDLE)),
-                                             removal_policy=aws_cdk.RemovalPolicy.RETAIN,
-                                             compatible_runtimes=[lambda_.Runtime.PYTHON_3_9],
-                                             compatible_architectures=[lambda_.Architecture.X86_64])
+                                            {assetHashType: aws_cdk.AssetHashType.SOURCE}),
+                                                                    removal_policy=aws_cdk.RemovalPolicy.RETAIN,
+                                                                    compatible_runtimes=[lambda_.Runtime.PYTHON_3_9],
+                                                                    compatible_architectures=[lambda_.Architecture.X86_64])
         #ver = generic_layer.current_version
         #print("version of lambda layer" , ver)
         # Lambda-Role
